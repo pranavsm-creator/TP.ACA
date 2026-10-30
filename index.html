@@ -1,0 +1,871 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>TP Academy · Job-Ready Transfer Pricing Mastery</title>
+<style>
+:root {
+  --bg: #f4f6f9;
+  --card: #ffffff;
+  --tx: #0f172a;
+  --tx-mut: #64748b;
+  --pri: #0284c7;
+  --pri-hover: #0369a1;
+  --pri-soft: #e0f2fe;
+  --acc: #10b981;
+  --acc-soft: #d1fae5;
+  --warn: #f59e0b;
+  --warn-soft: #fef3c7;
+  --err: #ef4444;
+  --err-soft: #fee2e2;
+  --bd: #e2e8f0;
+  --radius: 10px;
+  --shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --bg: #0f172a;
+  --card: #1e293b;
+  --tx: #f8fafc;
+  --tx-mut: #94a3b8;
+  --pri: #38bdf8;
+  --pri-hover: #0284c7;
+  --pri-soft: #0c4a6e;
+  --acc: #34d399;
+  --acc-soft: #064e3b;
+  --warn: #fbbf24;
+  --warn-soft: #451a03;
+  --err: #f87171;
+  --err-soft: #450a0a;
+  --bd: #334155;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--tx);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  background: var(--card);
+  border-bottom: 1px solid var(--bd);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--pri);
+}
+
+.brand-badge {
+  background: var(--pri-soft);
+  color: var(--pri);
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 99px;
+  font-weight: 600;
+}
+
+nav { display: flex; gap: 6px; }
+nav button {
+  background: none;
+  border: none;
+  color: var(--tx-mut);
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+nav button:hover { background: var(--bg); color: var(--tx); }
+nav button.active { background: var(--pri-soft); color: var(--pri); font-weight: 600; }
+
+.hdr-actions { display: flex; gap: 10px; align-items: center; }
+
+main { max-width: 1200px; margin: 0 auto; padding: 24px 16px; }
+
+.btn {
+  background: var(--card);
+  border: 1px solid var(--bd);
+  color: var(--tx);
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.15s ease;
+  font-size: 13px;
+}
+.btn:hover { border-color: var(--pri); color: var(--pri); }
+.btn-pri { background: var(--pri); color: #fff; border-color: var(--pri); }
+.btn-pri:hover { background: var(--pri-hover); border-color: var(--pri-hover); color: #fff; }
+.btn-sm { padding: 4px 10px; font-size: 12px; }
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--bd);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow);
+}
+
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; }
+.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 16px; }
+
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 99px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.badge-acc { background: var(--acc-soft); color: var(--acc); }
+.badge-warn { background: var(--warn-soft); color: var(--warn); }
+.badge-pri { background: var(--pri-soft); color: var(--pri); }
+
+.progress-bar {
+  height: 8px;
+  background: var(--bd);
+  border-radius: 99px;
+  overflow: hidden;
+  margin: 10px 0;
+}
+.progress-fill { height: 100%; background: var(--acc); transition: width 0.3s ease; }
+
+.lesson-content { line-height: 1.7; font-size: 15px; }
+.lesson-content h3 { margin: 16px 0 8px; color: var(--pri); border-bottom: 1px solid var(--bd); padding-bottom: 4px; }
+.lesson-content ul { margin-left: 20px; margin-bottom: 12px; }
+.lesson-content code { background: var(--bg); padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: 13px; }
+
+.formula-box {
+  background: var(--pri-soft);
+  border-left: 4px solid var(--pri);
+  padding: 12px 16px;
+  margin: 12px 0;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  font-family: monospace;
+}
+
+.quiz-opt {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 10px 14px;
+  margin: 6px 0;
+  border: 1px solid var(--bd);
+  border-radius: 6px;
+  background: var(--card);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.quiz-opt:hover { border-color: var(--pri); }
+.quiz-opt.correct { border-color: var(--acc); background: var(--acc-soft); color: var(--tx); font-weight: 600; }
+.quiz-opt.incorrect { border-color: var(--err); background: var(--err-soft); color: var(--tx); }
+
+.chat-box {
+  height: 380px;
+  overflow-y: auto;
+  border: 1px solid var(--bd);
+  border-radius: var(--radius);
+  padding: 14px;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.msg { max-width: 85%; padding: 10px 14px; border-radius: 12px; line-height: 1.5; font-size: 13px; white-space: pre-wrap; }
+.msg-user { align-self: flex-end; background: var(--pri); color: #fff; border-bottom-right-radius: 2px; }
+.msg-ai { align-self: flex-start; background: var(--card); border: 1px solid var(--bd); color: var(--tx); border-bottom-left-radius: 2px; }
+
+.input-row { display: flex; gap: 8px; margin-top: 10px; }
+input, select, textarea {
+  width: 100%;
+  padding: 10px 12px;
+  background: var(--card);
+  border: 1px solid var(--bd);
+  border-radius: 6px;
+  color: var(--tx);
+  font: inherit;
+}
+input:focus, select:focus, textarea:focus { outline: none; border-color: var(--pri); }
+
+.table-wrap { overflow-x: auto; margin-top: 10px; }
+table { width: 100%; border-collapse: collapse; min-width: 650px; text-align: left; font-size: 13px; }
+th, td { border: 1px solid var(--bd); padding: 10px 12px; }
+th { background: var(--bg); font-weight: 600; }
+
+.calc-box {
+  background: var(--card);
+  border: 1px solid var(--bd);
+  padding: 16px;
+  border-radius: var(--radius);
+}
+
+@media (max-width: 768px) {
+  header { flex-direction: column; gap: 12px; align-items: flex-start; }
+  nav { width: 100%; overflow-x: auto; padding-bottom: 4px; }
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <span>⚖️ TP Academy</span>
+    <span class="brand-badge">Job-Ready Pro</span>
+  </div>
+  <nav id="nav-bar"></nav>
+  <div class="hdr-actions">
+    <button class="btn btn-sm" id="btn-theme">🌙 Mode</button>
+  </div>
+</header>
+
+<main id="main-app"></main>
+
+<script>
+// --- GLOBAL DATA & CURRICULUM ---
+
+const LEVELS = {
+  1: { title: "Level 1: Foundation & Mechanics", desc: "No tax background needed. Core concepts, ALP, AE definitions & transactions." },
+  2: { title: "Level 2: Methodologies, Benchmarking & Documentation", desc: "FAR analysis, the 5 OECD methods, database benchmarking & 3-tier docs." },
+  3: { title: "Level 3: Expert, Intangibles, Disputes & Global Rules", desc: "DEMPE, APAs, MAP, Pillar One/Two, financial transactions & audit defense." }
+};
+
+const LESSONS = [
+  // LEVEL 1
+  {
+    id: "1a", level: 1, title: "1.1 What is Transfer Pricing & Arm's Length Principle",
+    content: `
+      <h3>Understanding Transfer Pricing (TP)</h3>
+      <p>Transfer pricing refers to the terms and conditions (including prices) governing commercial transactions between <b>Associated Enterprises (AEs)</b> under common control (e.g., a parent company in the US selling IP rights or services to a subsidiary in India).</p>
+      <p>Tax authorities monitor TP because related entities could artificially shift profits to low-tax jurisdictions by overcharging or undercharging for goods, services, loans, or intangibles.</p>
+      
+      <h3>The Arm's Length Principle (ALP)</h3>
+      <p>The standard internationally agreed upon for setting transfer prices is the <b>Arm's Length Principle</b> (OECD TP Guidelines Art. 9, US IRC §482, India Sec. 92C).</p>
+      <div class="formula-box">
+        Arm's Length Price = Price that would be charged between two completely independent/unrelated entities for a comparable transaction under comparable circumstances.
+      </div>
+      <p><b>Key Rule:</b> Commercial & financial relations between related parties must mimic free-market conditions.</p>
+    `,
+    quiz: [
+      { q: "Transfer pricing primarily governs transactions between:", opts: ["Unrelated third parties", "Associated Enterprises under common control", "Government departments", "Individual retail consumers"], a: 1 },
+      { q: "The main global standard for evaluating transfer prices is called:", opts: ["The Fair Trade Rule", "The Arm's Length Principle (ALP)", "The Equal Tax Margin Standard", "The OECD Single Tariff Code"], a: 1 }
+    ]
+  },
+  {
+    id: "1b", level: 1, title: "1.2 Associated Enterprises (AEs) & Control Test",
+    content: `
+      <h3>Defining Associated Enterprises</h3>
+      <p>Two entities are AEs if one participates directly or indirectly in the management, control, or capital of the other, or if a third party holds control over both.</p>
+
+      <h3>Statutory Threshold Examples:</h3>
+      <ul>
+        <li><b>India (Sec. 92A):</b> Direct/indirect ownership of ≥ 26% voting power, or loan constituting ≥ 51% of total assets, or appointment of more than half of the Board of Directors.</li>
+        <li><b>USA (IRC §482):</b> Any kind of control, direct or indirect, whether legally enforceable or operational.</li>
+        <li><b>OECD Guidelines:</b> Focuses on economic unit interdependence and decision-making power.</li>
+      </ul>
+
+      <h3>Common Intercompany Transactions:</h3>
+      <ul>
+        <li><b>Goods:</b> Finished goods, raw material, capital equipment sales.</li>
+        <li><b>Services:</b> IT development, back-office support, corporate management recharges.</li>
+        <li><b>Financial:</b> Intercompany loans, guarantees, cash pooling.</li>
+        <li><b>Intangibles:</b> Royalties for patents, software licenses, trademarks.</li>
+      </ul>
+    `,
+    quiz: [
+      { q: "In Indian Transfer Pricing (Sec. 92A), what voting power percentage triggers an AE relationship?", opts: ["10%", "26%", "50%", "75%"], a: 1 },
+      { q: "An intercompany loan representing 60% of total asset value generally makes companies AEs because:", opts: ["It satisfies financial control thresholds", "It is a third-party loan", "It triggers custom duties", "It eliminates interest expense"], a: 0 }
+    ]
+  },
+
+  // LEVEL 2
+  {
+    id: "2a", level: 2, title: "2.1 Functional Analysis (FAR) & Entity Characterization",
+    content: `
+      <h3>The FAR Framework</h3>
+      <p>Before selecting a TP method, a TP professional must conduct a <b>FAR Analysis</b>:</p>
+      <ul>
+        <li><b>Functions:</b> R&D, manufacturing, distribution, marketing, quality control, logistics.</li>
+        <li><b>Assets:</b> Tangible assets (factories, IT infrastructure) & Intangible assets (patents, brand name, algorithms).</li>
+        <li><b>Risks:</b> Market risk, credit risk, inventory risk, foreign exchange risk, product liability risk.</li>
+      </ul>
+
+      <h3>Entity Characterization (Crucial for Job Execution)</h3>
+      <table style="margin: 10px 0;">
+        <tr><th>Entity Type</th><th>Functions Performed</th><th>Risks Assumed</th><th>Expected Profitability</th></tr>
+        <tr><td><b>Contract R&D / Captive Service Provider</b></td><td>Routine software/R&D tasks directed by parent</td><td>Minimal (cost-plus guaranteed)</td><td>Stable, routine low-to-medium margin</td></tr>
+        <tr><td><b>Full-Fledged Manufacturer</b></td><td>End-to-end production, IP creation, marketing</td><td>High market, operational, & inventory risk</td><td>Variable, potential high rewards or losses</td></tr>
+        <tr><td><b>Limited Risk Distributor (LRD)</b></td><td>Sells goods purchased from parent without IP ownership</td><td>Low market/inventory risk</td><td>Small, stable operating margin</td></tr>
+      </table>
+    `,
+    quiz: [
+      { q: "Which entity characterization typically bears the lowest commercial and inventory risk?", opts: ["Full-fledged manufacturer", "Entrepreneurial distributor", "Contract R&D / Captive Service Provider", "Independent trader"], a: 2 },
+      { q: "FAR stands for:", opts: ["Financial Assets & Returns", "Functions, Assets, and Risks", "Fiscal Audit & Revenues", "Foreign Accounting Regulations"], a: 1 }
+    ]
+  },
+  {
+    id: "2b", level: 2, title: "2.2 The 5 OECD TP Methods & Financial Calculations",
+    content: `
+      <h3>Selection of the Most Appropriate Method (MAM)</h3>
+      <p>OECD & domestic tax laws outline 5 standard methods to determine the Arm's Length Price:</p>
+
+      <h3>1. Traditional Transaction Methods</h3>
+      <ul>
+        <li><b>Comparable Uncontrolled Price (CUP):</b> Compares price charged in a controlled transaction directly to price in an uncontrolled transaction. (Best for commodities, interest rates).</li>
+        <li><b>Resale Price Method (RPM):</b> $Gross\\ Margin = (Resale\\ Price - Purchase\\ Price) / Resale\\ Price$. (Best for distributors).</li>
+        <li><b>Cost Plus Method (CPM):</b> $Gross\\ Markup = (Selling\\ Price - Direct/Indirect\\ Cost) / Direct\\ Cost$. (Best for contract manufacturing).</li>
+      </ul>
+
+      <h3>2. Transactional Profit Methods</h3>
+      <ul>
+        <li><b>Transactional Net Margin Method (TNMM):</b> Examines net profit relative to an appropriate base (costs, sales, assets). Most commonly used globally for routine service providers.</li>
+        <div class="formula-box">Profit Level Indicator (PLI) = Operating Profit / Operating Expenses (OP/OPEX)</div>
+        <li><b>Profit Split Method (PSM):</b> Splits combined profit based on value added. (Best for highly integrated operations or unique intangibles).</li>
+      </ul>
+    `,
+    quiz: [
+      { q: "Which method is most widely used for routine captive software service entities in India and LATAM?", opts: ["Resale Price Method", "TNMM (Transactional Net Margin Method)", "CUP Method", "Profit Split Method"], a: 1 },
+      { q: "If a company has Operating Income of 115 and Operating Cost of 100, its Net Mark-up on Cost (PLI) is:", opts: ["15%", "115%", "13%", "85%"], a: 0 }
+    ]
+  },
+  {
+    id: "2c", level: 2, title: "2.3 Benchmarking & Database Searching Steps",
+    content: `
+      <h3>Benchmarking Workflow in Practice</h3>
+      <p>When working as a TP Analyst, you will conduct benchmarking studies using specialized databases (e.g., Prowess, Capital IQ, Orbis, Amadeus, TP Catalyst):</p>
+      
+      <ol style="margin-left: 20px;">
+        <li><b>Identify Tested Party:</b> Usually the least complex entity without unique intangibles (e.g., the Indian service provider).</li>
+        <li><b>Industry Classification (NIC/NACE/SIC Search):</b> Filter by business sector codes.</li>
+        <li><b>Quantitative Filters:</b>
+          <ul>
+            <li>Financial availability (e.g., 3 consecutive years of data).</li>
+            <li>Sales threshold / Turnover filter.</li>
+            <li>Persistent loss makers removal (e.g., companies with negative net worth/OP in 3/3 years).</li>
+          </ul>
+        </li>
+        <li><b>Qualitative Screening:</b> Review website/annual reports to eliminate companies with non-comparable functions or significant R&D/IP ownership.</li>
+        <li><b>Arm's Length Range Construction:</b>
+          <ul>
+            <li><b>OECD / USA:</b> Interquartile Range (25th Percentile to 75th Percentile, Median = 50th).</li>
+            <li><b>India Rule:</b> 35th Percentile to 65th Percentile (Median = 50th).</li>
+          </ul>
+        </li>
+      </ol>
+    `,
+    quiz: [
+      { q: "What is the tested party in a Transfer Pricing study?", opts: ["The parent entity with global patents", "The most complex entity in the group", "The least complex entity without unique intangibles", "The entity with highest revenue"], a: 2 },
+      { q: "What percentile range is used for transfer pricing range in India under Rule 10CA?", opts: ["25th to 75th percentile", "10th to 90th percentile", "35th to 65th percentile", "50th to 100th percentile"], a: 2 }
+    ]
+  },
+
+  // LEVEL 3
+  {
+    id: "3a", level: 3, title: "3.1 Intangibles, DEMPE & Royalty Pricing",
+    content: `
+      <h3>Intangible Property in Transfer Pricing</h3>
+      <p>Legal ownership of a patent or trademark alone does <b>NOT</b> automatically entitle an entity to all economic returns. OECD BEPS Action 8–10 introduced the <b>DEMPE Framework</b>.</p>
+
+      <h3>The DEMPE Functions:</h3>
+      <ul>
+        <li><b>Development:</b> Directing and performing strategic R&D projects.</li>
+        <li><b>Enhancement:</b> Improving existing IP, software upgrades, brand expansion.</li>
+        <li><b>Maintenance:</b> Maintaining patents, quality assurance, brand standards.</li>
+        <li><b>Protection:</b> Registering patents, legal defense against infringement.</li>
+        <li><b>Exploitation:</b> Commercializing, licensing, marketing the IP.</li>
+      </ul>
+      <p><b>Rule:</b> The entity performing and controlling the high-risk DEMPE functions must be compensated with the intangible profits, regardless of who holds legal title.</p>
+    `,
+    quiz: [
+      { q: "Under the OECD DEMPE framework, legal ownership of an IP alone entitles the owner to:", opts: ["All global economic profits from the IP", "Only a risk-free return on capital if no DEMPE functions are controlled", "100% tax exemptions", "Exemption from transfer pricing rules"], a: 1 },
+      { q: "DEMPE stands for:", opts: ["Development, Enhancement, Maintenance, Protection, Exploitation", "Data, Equity, Management, Pricing, Execution", "Direct Export Margins & Production Expenses", "Distribution, Ethics, Management, Planning, Economy"], a: 0 }
+    ]
+  },
+  {
+    id: "3b", level: 3, title: "3.2 Dispute Prevention: APAs, MAP & Audit Defense",
+    content: `
+      <h3>Advance Pricing Agreements (APAs)</h3>
+      <p>An agreement between a taxpayer and tax authorities setting the transfer pricing methodology and arm's length prices for future years (typically 5 forward years + up to 4 rollback years).</p>
+      <ul>
+        <li><b>Unilateral APA:</b> Taxpayer & domestic tax authority.</li>
+        <li><b>Bilateral / Multilateral APA:</b> Taxpayer, parent company, and tax authorities of both countries (avoids double tax).</li>
+      </ul>
+
+      <h3>Mutual Agreement Procedure (MAP)</h3>
+      <p>A dispute resolution mechanism under Double Taxation Avoidance Agreements (DTAAs / Article 25) where competent authorities of two states negotiate to relieve double taxation resulting from a TP adjustment.</p>
+
+      <h3>Documentation Requirements (BEPS Action 13)</h3>
+      <ul>
+        <li><b>Master File:</b> Global business model, IP strategy, financial structure (Group level).</li>
+        <li><b>Local File:</b> Specific country entity intercompany transactions, FAR analysis, TNMM calculations.</li>
+        <li><b>CbC Report (Country-by-Country Reporting):</b> Global allocation of revenue, tax paid, employee headcount for MNE groups with consolidated turnover $\ge$ €750 Million (or ~₹6,400 Crore in India).</li>
+      </ul>
+    `,
+    quiz: [
+      { q: "What is the global revenue threshold for Country-by-Country Reporting (CbCR) under BEPS Action 13?", opts: ["€5 Million", "€100 Million", "€750 Million", "€5 Billion"], a: 2 },
+      { q: "Which agreement type best protects an MNE from double taxation across two countries?", opts: ["Unilateral APA", "Bilateral APA", "Internal Audit Memo", "Unilateral Tax Clearance"], a: 1 }
+    ]
+  }
+];
+
+const COUNTRY_DATA = [
+  { country: "🇮🇳 India", statute: "Income Tax Act Ss. 92 to 92F; Rules 10A-10TH", docThreshold: "Aggregate cross-border transactions > ₹1 Crore; Form 3CEB mandatory", range: "35th to 65th Percentile", filingDeadline: "30th November", penalty: "2% of transaction value for non-furnishing (Sec 271AA/271G)" },
+  { country: "🇺🇸 USA", statute: "IRC §482; Treasury Reg. §1.482", docThreshold: "Contemporaneous documentation required to avoid penalty", range: "25th to 75th Percentile (Interquartile)", filingDeadline: "Tax Return due date (with extensions)", penalty: "20% or 40% valuation misstatement penalty (IRC §6662)" },
+  { country: "🇬🇧 UK", statute: "TIOPA 2010 Part 4", docThreshold: "Large enterprises; OECD Master/Local File mandatory", range: "Interquartile Range", filingDeadline: "12 months after accounting period end", penalty: "Gearing penalties up to 100% of tax lost for deliberate non-compliance" },
+  { country: "🇸🇬 Singapore", statute: "Income Tax Act Sec 34D/34F; IRAS Guidelines", docThreshold: "Related party transactions > SGD 15M (varies by category)", range: "Interquartile Range (5% safe harbor markups for routine services)", filingDeadline: "Within 30 days upon IRAS request", penalty: "Fine up to SGD 10,000 + 5% surcharge on TP adjustments" },
+  { country: "🇦🇪 UAE", statute: "Federal Decree-Law 47/2022; Decision 97/2023", docThreshold: "Revenue > AED 150M or transactions with AEs > AED 5M", range: "OECD Interquartile Range", filingDeadline: "9 months after tax year end", penalty: "Administrative fines under Tax Procedures Law" }
+];
+
+const INTERVIEW_PREP = [
+  { q: "How do you explain TNMM to a CFO who asks why they can't just use CUP?", a: "Explain that CUP requires strict product and contract price comparability. If internal/external exact product price matches don't exist, minor functional differences distort the analysis. TNMM focuses on broader net operating margins of comparable routine companies, making it more reliable when exact price benchmarks are unavailable." },
+  { q: "What is the difference between a Contract R&D entity and a Full-Fledged R&D entity?", a: "A Contract R&D entity performs research under instructions, uses parent funding, holds no IP rights, and receives a routine cost-plus margin with zero commercial risk. A Full-Fledged R&D entity funds its own research, assumes success/failure risk, owns resulting patents, and earns high entrepreneurial returns (or bears losses)." },
+  { q: "Walk me through how you select comparable companies in a database like Orbis or Prowess.", a: "1) Define tested party & industry code (NIC/NACE). 2) Filter by financial data availability (3 years). 3) Apply turnover/sales criteria. 4) Apply quantitative screens (R&D intensity < 3%, advertising intensity < 3%, remove loss-makers). 5) Conduct qualitative manual screening of annual reports to ensure functional comparability." }
+];
+
+// --- STATE MANAGEMENT ---
+let STATE = {
+  tab: "home",
+  level: 1,
+  doneLessons: JSON.parse(localStorage.getItem("tp_done") || "{}"),
+  currentLesson: null,
+  chat: [],
+  theme: localStorage.getItem("tp_theme") || "light"
+};
+
+// Apply initial theme
+if (STATE.theme === "dark") document.documentElement.setAttribute("data-theme", "dark");
+
+function saveProgress() {
+  localStorage.setItem("tp_done", JSON.stringify(STATE.doneLessons));
+}
+
+// --- RENDER ENGINE ---
+function renderNav() {
+  const tabs = [
+    ["home", "🏠 Home"],
+    ["learn", "📚 Learning Modules"],
+    ["ai-studio", "🤖 AI Tutor & Doubts"],
+    ["calculator", "🧮 PLI Calculator"],
+    ["countries", "🌐 Global Rules"],
+    ["career", "💼 Job Prep & Interviews"]
+  ];
+  
+  const navEl = document.getElementById("nav-bar");
+  navEl.innerHTML = tabs.map(t => 
+    `<button class="${STATE.tab === t[0] ? 'active' : ''}" onclick="switchTab('${t[0]}')">${t[1]}</button>`
+  ).join("");
+}
+
+function switchTab(t) {
+  STATE.tab = t;
+  STATE.currentLesson = null;
+  render();
+}
+
+function render() {
+  renderNav();
+  const main = document.getElementById("main-app");
+  
+  switch(STATE.tab) {
+    case "home": renderHome(main); break;
+    case "learn": renderLearn(main); break;
+    case "ai-studio": renderAIStudio(main); break;
+    case "calculator": renderCalculator(main); break;
+    case "countries": renderCountries(main); break;
+    case "career": renderCareer(main); break;
+  }
+}
+
+// --- TAB VIEWS ---
+
+function renderHome(main) {
+  const totalLessons = LESSONS.length;
+  const doneCount = Object.keys(STATE.doneLessons).length;
+  const pctTotal = Math.round((doneCount / totalLessons) * 100) || 0;
+
+  main.innerHTML = `
+    <div class="card" style="background: linear-gradient(135deg, var(--pri-soft) 0%, var(--card) 100%);">
+      <span class="badge badge-pri">Comprehensive Job Prep Curriculum</span>
+      <h1 style="margin: 10px 0 6px; font-size: 26px;">Master Transfer Pricing from Zero to Job-Ready</h1>
+      <p style="color: var(--tx-mut); max-width: 800px;">
+        Learn OECD guidelines, FAR analysis, 5 valuation methods, benchmarking workflows, BEPS Action 13 documentation, and global tax compliance to start your career in Big 4 / corporate tax teams.
+      </p>
+      
+      <div style="margin-top: 20px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+        <button class="btn btn-pri" onclick="switchTab('learn')">Start Learning Now →</button>
+        <button class="btn" onclick="switchTab('ai-studio')">Ask AI TP Assistant</button>
+      </div>
+
+      <div style="margin-top: 24px;">
+        <div style="display: flex; justify-content: space-between; font-weight: 600; font-size: 13px;">
+          <span>Overall Progress</span>
+          <span>${pctTotal}% Completed (${doneCount}/${totalLessons} Modules)</span>
+        </div>
+        <div class="progress-bar"><div class="progress-fill" style="width: ${pctTotal}%"></div></div>
+      </div>
+    </div>
+
+    <h2 style="margin-bottom: 14px;">Curriculum Progression</h2>
+    <div class="grid-3">
+      ${[1,2,3].map(lvl => {
+        const lvlLessons = LESSONS.filter(x => x.level === lvl);
+        const lvlDone = lvlLessons.filter(x => STATE.doneLessons[x.id]).length;
+        const lvlPct = Math.round((lvlDone / lvlLessons.length) * 100) || 0;
+        return `
+          <div class="card">
+            <span class="badge badge-acc">Level ${lvl}</span>
+            <h3 style="margin: 8px 0;">${LEVELS[lvl].title}</h3>
+            <p style="color: var(--tx-mut); font-size: 13px; margin-bottom: 12px;">${LEVELS[lvl].desc}</p>
+            <div class="progress-bar"><div class="progress-fill" style="width: ${lvlPct}%"></div></div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+              <small style="color: var(--tx-mut);">${lvlDone}/${lvlLessons.length} Done</small>
+              <button class="btn btn-sm" onclick="STATE.level=${lvl}; switchTab('learn');">Explore →</button>
+            </div>
+          </div>
+        `;
+      }).join("")}
+    </div>
+  `;
+}
+
+function renderLearn(main) {
+  if (STATE.currentLesson) {
+    renderLessonDetail(main);
+    return;
+  }
+
+  const filtered = LESSONS.filter(x => x.level === STATE.level);
+
+  main.innerHTML = `
+    <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+      ${[1, 2, 3].map(l => `
+        <button class="btn ${STATE.level === l ? 'btn-pri' : ''}" onclick="STATE.level=${l}; render();">
+          Level ${l}
+        </button>
+      `).join("")}
+    </div>
+
+    <div class="card">
+      <h2>${LEVELS[STATE.level].title}</h2>
+      <p style="color: var(--tx-mut);">${LEVELS[STATE.level].desc}</p>
+    </div>
+
+    <div class="grid-2">
+      ${filtered.map(les => {
+        const isDone = STATE.doneLessons[les.id];
+        return `
+          <div class="card" style="display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <span class="badge ${isDone ? 'badge-acc' : 'badge-warn'}">${isDone ? '✓ Completed' : 'Pending'}</span>
+                <small style="color: var(--tx-mut);">Level ${les.level}</small>
+              </div>
+              <h3>${les.title}</h3>
+            </div>
+            <div style="margin-top: 16px;">
+              <button class="btn btn-pri btn-sm" onclick="openLesson('${les.id}')">Start Lesson & Quiz →</button>
+            </div>
+          </div>
+        `;
+      }).join("")}
+    </div>
+  `;
+}
+
+function openLesson(id) {
+  STATE.currentLesson = LESSONS.find(x => x.id === id);
+  render();
+}
+
+function renderLessonDetail(main) {
+  const les = STATE.currentLesson;
+  main.innerHTML = `
+    <button class="btn btn-sm" style="margin-bottom: 14px;" onclick="STATE.currentLesson=null; render();">← Back to Lessons</button>
+    
+    <div class="card lesson-content">
+      <h2>${les.title}</h2>
+      ${les.content}
+    </div>
+
+    <div class="card">
+      <h3 style="margin-bottom: 12px;">Knowledge Check & Job Prep Quiz</h3>
+      <div id="quiz-container">
+        ${les.quiz.map((q, idx) => `
+          <div style="margin-bottom: 16px;">
+            <p><b>Q${idx+1}: ${q.q}</b></p>
+            ${q.opts.map((opt, oIdx) => `
+              <button class="quiz-opt" id="q_${idx}_${oIdx}" onclick="checkAnswer('${les.id}', ${idx}, ${oIdx}, ${q.a})">
+                ${opt}
+              </button>
+            `).join("")}
+          </div>
+        `).join("")}
+      </div>
+    </div>
+  `;
+}
+
+function checkAnswer(lesId, qIdx, selectedIdx, correctIdx) {
+  const btn = document.getElementById(`q_${qIdx}_${selectedIdx}`);
+  if (selectedIdx === correctIdx) {
+    btn.classList.add("correct");
+  } else {
+    btn.classList.add("incorrect");
+    document.getElementById(`q_${qIdx}_${correctIdx}`).classList.add("correct");
+  }
+
+  // Mark lesson done if answered
+  STATE.doneLessons[lesId] = true;
+  saveProgress();
+}
+
+function renderAIStudio(main) {
+  main.innerHTML = `
+    <div class="card">
+      <h2>🤖 TP AI Learning Studio & Doubt Solver</h2>
+      <p style="color: var(--tx-mut);">Ask technical questions, request FAR analysis for custom transactions, or get method suggestions.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>Interactive Assistant</h3>
+        <div class="chat-box" id="ai-chat-box">
+          <div class="msg msg-ai">Hello! I am your AI Transfer Pricing Advisor. Ask me anything about OECD guidelines, Section 92, TNMM calculation, DEMPE, or audit defenses.</div>
+        </div>
+        <div class="input-row">
+          <input id="ai-input" placeholder="e.g., Explain TNMM vs CPM for contract manufacturing..." onkeypress="if(event.key==='Enter') sendAIPrompt()">
+          <button class="btn btn-pri" onclick="sendAIPrompt()">Send</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Quick Prompt Templates</h3>
+        <p style="color: var(--tx-mut); font-size: 12px; margin-bottom: 10px;">Click a scenario to run instant analysis:</p>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <button class="btn" style="text-align: left;" onclick="runPresetPrompt('What is the best TP method for an Indian subsidiary providing software development to its US parent?')">💻 Software R&D Service Provider Method</button>
+          <button class="btn" style="text-align: left;" onclick="runPresetPrompt('How to perform a functional analysis (FAR) for a Limited Risk Distributor (LRD)?')">📦 LRD FAR Analysis Framework</button>
+          <button class="btn" style="text-align: left;" onclick="runPresetPrompt('Explain DEMPE functions in the context of royalty payments for tech patents.')">🔑 Intangibles & Royalty DEMPE</button>
+          <button class="btn" style="text-align: left;" onclick="runPresetPrompt('What are the penalties under Indian Tax Law for failing to file Form 3CEB?')">🇮🇳 Form 3CEB Compliance & Penalty</button>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function sendAIPrompt() {
+  const input = document.getElementById("ai-input");
+  const text = input.value.trim();
+  if(!text) return;
+  runPresetPrompt(text);
+  input.value = "";
+}
+
+function runPresetPrompt(promptText) {
+  const chatBox = document.getElementById("ai-chat-box");
+  if(!chatBox) return;
+
+  chatBox.innerHTML += `<div class="msg msg-user">${escapeHtml(promptText)}</div>`;
+  chatBox.scrollTop = chatBox.scrollHeight;
+
+  // Generate simulated AI response based on transfer pricing technical rules
+  setTimeout(() => {
+    let reply = generateTPResponse(promptText);
+    chatBox.innerHTML += `<div class="msg msg-ai">${reply}</div>`;
+    chatBox.scrollTop = chatBox.scrollHeight;
+  }, 500);
+}
+
+function generateTPResponse(q) {
+  const query = q.toLowerCase();
+  
+  if (query.includes("software") || query.includes("r&d") || query.includes("captive")) {
+    return `<b>Analysis for Software R&D / Captive Service Provider:</b><br><br>
+    <b>1. Most Appropriate Method (MAM):</b> Transactional Net Margin Method (TNMM).<br>
+    <b>2. Tested Party:</b> The local captive subsidiary (least complex, routine functions).<br>
+    <b>3. Profit Level Indicator (PLI):</b> Operating Profit / Operating Cost (OP/OC).<br>
+    <b>4. Key Benchmark Range:</b> Typically 12% to 18% mark-up on cost depending on database search filters and location (e.g., India/EE/LATAM).<br>
+    <b>5. Statutory Citation:</b> OECD Chapter II; India Rule 10B(1)(e).`;
+  } else if (query.includes("lrd") || query.includes("distributor") || query.includes("far")) {
+    return `<b>FAR Analysis for Limited Risk Distributor (LRD):</b><br><br>
+    • <b>Functions:</b> Buys finished goods from parent, sells to local market. Does NOT create marketing intangibles.<br>
+    • <b>Assets:</b> Routine office infrastructure; no ownership of brand trademarks or patents.<br>
+    • <b>Risks:</b> Low inventory risk (often back-to-back ordering or return rights), minimal credit risk.<br>
+    • <b>Preferred Method:</b> Resale Price Method (RPM) or TNMM (using Operating Margin OP/Sales as PLI).`;
+  } else if (query.includes("dempe") || query.includes("royalty")) {
+    return `<b>DEMPE Analysis for Intangibles & Royalties:</b><br><br>
+    Legal title alone does not grant royalty entitlement. Tax authorities evaluate:<br>
+    1. <b>Development:</b> Who managed the R&D team?<br>
+    2. <b>Enhancement:</b> Who upgraded software/features?<br>
+    3. <b>Maintenance:</b> Who performed quality assurance?<br>
+    4. <b>Protection:</b> Who funded legal trademark/patent protection?<br>
+    5. <b>Exploitation:</b> Who took active commercial decisions?<br><br>
+    <i>Returns are allocated based on control over DEMPE functions and risk-bearing capacity.</i>`;
+  } else {
+    return `<b>Transfer Pricing Advisor Answer:</b><br><br>
+    Regarding "<i>${escapeHtml(q)}</i>":<br><br>
+    In transfer pricing practice, all intercompany transactions must be analyzed under the <b>Arm's Length Principle</b> (OECD Guidelines / Local Tax Code).<br>
+    Key steps to address this:<br>
+    1. Define the <b>exact nature of transaction</b> (Goods, Services, Intangibles, Financing).<br>
+    2. Conduct a <b>FAR Analysis</b> to characterize the entities.<br>
+    3. Select the <b>Most Appropriate Method</b> (CUP, TNMM, RPM, CPM, or PSM).<br>
+    4. Screen comparable uncontrolled transactions in accepted financial databases to establish the Arm's Length Range.`;
+  }
+}
+
+function renderCalculator(main) {
+  main.innerHTML = `
+    <div class="card">
+      <h2>🧮 Profit Level Indicator (PLI) & Mark-up Calculator</h2>
+      <p style="color: var(--tx-mut);">Test financial margins for TNMM benchmarking and audit preparation.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="calc-box">
+        <h3>Input Intercompany Financials</h3>
+        <br>
+        <label style="font-size: 12px; font-weight: 600;">Operating Revenue (Sales/Recharges)</label>
+        <input type="number" id="c-rev" value="1150000" oninput="calcPLI()">
+        <br><br>
+        <label style="font-size: 12px; font-weight: 600;">Operating Expenses (Direct & Indirect Costs)</label>
+        <input type="number" id="c-opex" value="1000000" oninput="calcPLI()">
+        <br><br>
+        <label style="font-size: 12px; font-weight: 600;">Pass-Through / Out-of-Pocket Costs (if any)</label>
+        <input type="number" id="c-pass" value="0" oninput="calcPLI()">
+      </div>
+
+      <div class="calc-box" style="background: var(--pri-soft);">
+        <h3>Calculated Results</h3>
+        <br>
+        <p><b>Operating Profit (OP):</b> <span id="r-op">₹150,000</span></p>
+        <hr style="margin: 10px 0; border: none; border-top: 1px solid var(--bd);">
+        <p><b>Mark-up on Cost (OP / OPEX):</b> <b id="r-pli-cost" style="color: var(--pri); font-size: 18px;">15.00%</b></p>
+        <p><b>Operating Margin (OP / Revenue):</b> <b id="r-pli-sales" style="color: var(--pri); font-size: 18px;">13.04%</b></p>
+        <br>
+        <div style="background: var(--card); padding: 10px; border-radius: 6px; font-size: 12px;">
+          <b>Job Tip:</b> Pass-through expenses with zero value-add should generally be excluded from the cost base when calculating mark-ups to prevent margin artificial inflation.
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function calcPLI() {
+  const rev = parseFloat(document.getElementById("c-rev").value) || 0;
+  const opex = parseFloat(document.getElementById("c-opex").value) || 0;
+  const pass = parseFloat(document.getElementById("c-pass").value) || 0;
+
+  const netOpex = opex - pass;
+  const op = rev - opex;
+
+  const pliCost = netOpex > 0 ? ((op / netOpex) * 100).toFixed(2) : "0.00";
+  const pliSales = rev > 0 ? ((op / rev) * 100).toFixed(2) : "0.00";
+
+  document.getElementById("r-op").innerText = "₹" + op.toLocaleString();
+  document.getElementById("r-pli-cost").innerText = pliCost + "%";
+  document.getElementById("r-pli-sales").innerText = pliSales + "%";
+}
+
+function renderCountries(main) {
+  main.innerHTML = `
+    <div class="card">
+      <h2>🌐 Global Transfer Pricing Comparison Matrix</h2>
+      <p style="color: var(--tx-mut);">Key regulations, thresholds, percentiles, and statutory deadlines across primary jurisdictions.</p>
+      
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Country / Hub</th>
+              <th>Statute / Legal Basis</th>
+              <th>Doc Thresholds & Forms</th>
+              <th>Arm's Length Range</th>
+              <th>Filing Deadline</th>
+              <th>Penalties</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${COUNTRY_DATA.map(c => `
+              <tr>
+                <td><b>${c.country}</b></td>
+                <td>${c.statute}</td>
+                <td>${c.docThreshold}</td>
+                <td><span class="badge badge-pri">${c.range}</span></td>
+                <td>${c.filingDeadline}</td>
+                <td style="color: var(--err);">${c.penalty}</td>
+              </tr>
+            `).join("")}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  `;
+}
+
+function renderCareer(main) {
+  main.innerHTML = `
+    <div class="card">
+      <h2>💼 Career & Job Interview Simulator</h2>
+      <p style="color: var(--tx-mut);">Prepare for technical interview questions asked in Big 4 firms (Deloitte, PwC, EY, KPMG) and multinational tax departments.</p>
+    </div>
+
+    <div class="grid-2">
+      ${INTERVIEW_PREP.map((item, idx) => `
+        <div class="card">
+          <span class="badge badge-warn">Question ${idx+1}</span>
+          <h3 style="margin: 8px 0;">${item.q}</h3>
+          <button class="btn btn-sm" onclick="document.getElementById('ans_${idx}').style.display = 'block';">Show Model Answer</button>
+          <div id="ans_${idx}" style="display: none; margin-top: 12px; padding: 10px; background: var(--bg); border-radius: 6px; font-size: 13px;">
+            <b>Model Answer:</b><br>${item.a}
+          </div>
+        </div>
+      `).join("")}
+    </div>
+  `;
+}
+
+// --- UTILS ---
+function escapeHtml(str) {
+  return String(str).replace(/[&<>"']/g, function(m) {
+    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m];
+  });
+}
+
+document.getElementById("btn-theme").onclick = () => {
+  const current = document.documentElement.getAttribute("data-theme");
+  const next = current === "dark" ? "light" : "dark";
+  document.documentElement.setAttribute("data-theme", next);
+  STATE.theme = next;
+  localStorage.setItem("tp_theme", next);
+};
+
+// Initial Render
+render();
+</script>
+</body>
+</html>
+
+```
